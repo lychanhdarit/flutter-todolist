@@ -27,7 +27,7 @@ class _TaskPageState extends State<TaskPage> {
                   itemCount: _dataList.length,
                   itemBuilder: (context, index) {
                     return _dataList[index].isFinish
-                        ? _taskComplate(_dataList[index].task)
+                        ? _taskComplate(_dataList[index])
                         : _taskUnComplate(_dataList[index]);
                   },
                 );
@@ -45,10 +45,23 @@ class _TaskPageState extends State<TaskPage> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Text("Confirm task",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text(
+                    titleDialog,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Theme.of(context).accentColor),
+                  ),
                   SizedBox(
-                    height: 24,
+                    height: 10,
+                  ),
+                  Divider(
+                    height: 1,
+                    indent: 1,
+                    color: Theme.of(context).accentColor,
+                  ),
+                  SizedBox(
+                    height: 10,
                   ),
                   Text(task.task.toString()),
                   SizedBox(
@@ -59,15 +72,40 @@ class _TaskPageState extends State<TaskPage> {
                       onPressed: _pickerDate,
                       value: DateFormat("dd-MM-yyyy").format(task.date)),
                   SizedBox(
-                    height: 24,
+                    height: 10,
                   ),
-                  CustomBotton(
-                    buttonText: buttonText,
+                  Divider(
+                    height: 1,
+                    indent: 1,
                     color: Theme.of(context).accentColor,
-                    textColor: Colors.white,
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                          child: CustomBotton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        textColor: Theme.of(context).accentColor,
+                        buttonText: 'Đóng',
+                        color: Colors.white, 
+                      )),
+                      SizedBox(
+                        width: 24,
+                      ),
+                      Expanded(
+                        child: CustomBotton(
+                          buttonText: buttonText,
+                          color: Theme.of(context).accentColor,
+                          textColor: Colors.white,
+                          onPressed: onPressed,
+                        ),
+                      ),
+                    ],
                   )
                 ],
               ),
@@ -79,14 +117,14 @@ class _TaskPageState extends State<TaskPage> {
   Widget _taskUnComplate(TodoData todoTask) {
     return InkWell(
       onTap: () {
-        _showDialog("Confirm Task ", todoTask, "Complate", () {
+        _showDialog("Xác nhận công việc ", todoTask, "Hoàn tất", () {
           provider
               .completeTodoEntries(todoTask.id)
               .whenComplete(() => Navigator.of(context).pop());
         });
       },
       onLongPress: () {
-        _showDialog("Delete Task ", todoTask, "Delete", () {
+        _showDialog("Xóa ghi chú ", todoTask, "Xóa", () {
           provider
               .deleteTodoEntries(todoTask.id)
               .whenComplete(() => Navigator.of(context).pop());
@@ -111,25 +149,42 @@ class _TaskPageState extends State<TaskPage> {
     );
   }
 
-  Widget _taskComplate(String task) {
-    return Container(
-      foregroundDecoration: BoxDecoration(color: Color(0x600FDFDFD)),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(24, 10, 24, 10),
-        child: Row(
-          children: <Widget>[
-            Icon(
-              Icons.radio_button_checked,
-              color: Theme.of(context).accentColor,
-              size: 20,
-            ),
-            SizedBox(
-              width: 28,
-            ),
-            Text(
-              task,
-            )
-          ],
+  Widget _taskComplate(TodoData todoTask) {
+    return InkWell(
+      onTap: () {
+        _showDialog("Xóa ghi chú ", todoTask, "Xóa", () {
+          provider
+              .deleteTodoEntries(todoTask.id)
+              .whenComplete(() => Navigator.of(context).pop());
+        });
+      },
+      onLongPress: () {
+        _showDialog("Xóa ghi chú ", todoTask, "Xóa", () {
+          provider
+              .deleteTodoEntries(todoTask.id)
+              .whenComplete(() => Navigator.of(context).pop());
+        });
+      },
+      child: Container(
+        foregroundDecoration:
+            BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.5)),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(24, 10, 24, 10),
+          child: Row(
+            children: <Widget>[
+              Icon(
+                Icons.radio_button_checked,
+                color: Theme.of(context).accentColor,
+                size: 20,
+              ),
+              SizedBox(
+                width: 28,
+              ),
+              Text(
+                todoTask.task,
+              )
+            ],
+          ),
         ),
       ),
     );

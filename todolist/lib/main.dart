@@ -25,21 +25,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-class TestPage extends StatefulWidget {
-  @override
-  _TestPageState createState() => _TestPageState();
-}
-
-class _TestPageState extends State<TestPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Text("abc"),
-    );
-  }
-}
-
+ 
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomeState createState() => _MyHomeState();
@@ -127,7 +113,7 @@ class _MyHomeState extends State<MyHomePage> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(24.0),
+          padding: const EdgeInsets.fromLTRB(24,5,24,5),
           child: _buttonTop(context),
         ),
         Expanded(
@@ -150,7 +136,7 @@ class _MyHomeState extends State<MyHomePage> {
                 duration: Duration(milliseconds: 500),
                 curve: Curves.bounceInOut);
           },
-          buttonText: 'Task',
+          buttonText: 'Ghi chú',
           textColor:
               currentPage < 0.5 ? Colors.white : Theme.of(context).accentColor,
           color:
@@ -169,7 +155,7 @@ class _MyHomeState extends State<MyHomePage> {
                 duration: Duration(milliseconds: 500),
                 curve: Curves.bounceInOut);
           },
-          buttonText: 'Events',
+          buttonText: 'Sự kiện',
           textColor:
               currentPage > 0.5 ? Colors.white : Theme.of(context).accentColor,
           color:

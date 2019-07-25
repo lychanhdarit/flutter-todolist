@@ -17,7 +17,7 @@ class CustomDateTimePicker extends StatelessWidget {
         padding: const EdgeInsets.only(left: 12.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Icon(
               icon,

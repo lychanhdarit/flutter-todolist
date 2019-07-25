@@ -13,10 +13,10 @@ class CustomModelAction extends StatelessWidget {
             Expanded(
                 child: CustomBotton(
               onPressed: onClose,
-              textColor: Theme.of(context).accentColor,
-              buttonText: 'Close',
+              textColor: Colors.grey,
+              buttonText: 'Đóng',
               color: Colors.white,
-              borderColor: Theme.of(context).accentColor,
+              borderColor: Colors.transparent
             )),
              SizedBox(
           width: 24,
@@ -25,7 +25,7 @@ class CustomModelAction extends StatelessWidget {
                 child: CustomBotton(
               onPressed: onSave,
               textColor: Colors.white,
-              buttonText: 'Save',
+              buttonText: 'Cập nhật',
               color: Theme.of(context).accentColor, 
             )),
           ],

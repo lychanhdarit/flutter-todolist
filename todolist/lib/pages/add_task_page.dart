@@ -30,32 +30,46 @@ class _AddTaskPageState extends State<AddTaskPage> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<Database>(context);
-    _textTaskController.clear();
+   // _textTaskController.clear();
     return Padding(
-      padding: const EdgeInsets.all(24.0),
+      padding: const EdgeInsets.all(10.0), 
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.min, 
         children: <Widget>[
           Center(
             child: Text(
-              "Add new task",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              "Thêm ghi chú",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20,color: Theme.of(context).accentColor),
             ),
           ),
+         SizedBox(
+            height: 10,
+          ),
+          Divider(height: 1,indent: 1,color: Theme.of(context).accentColor,),
           SizedBox(
-            height: 24,
+            height: 10,
           ),
           CustomDateTimePicker(
               icon: Icons.date_range,
               onPressed: _pickerDate,
               value:  DateFormat("dd-MM-yyyy").format(_selectedDate) ),
+         SizedBox(
+            height: 10,
+          ),
+          Divider(height: 1,indent: 1,),
           SizedBox(
-            height: 24,
+            height: 10,
           ),
           CustomTextField(
-            labelText: 'Enter task name',controller: _textTaskController,
+            labelText: 'nhập ghi chú',controller: _textTaskController,
           ),
-         
+          SizedBox(
+            height: 10,
+          ),
+          Divider(height: 1,indent: 1,color: Theme.of(context).accentColor,),
+          SizedBox(
+            height: 10,
+          ),
           CustomModelAction(
             onClose: () {
               Navigator.of(context).pop();

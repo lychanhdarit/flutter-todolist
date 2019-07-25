@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:todolist/models/database.dart';
 import 'package:todolist/models/todolist.dart';
@@ -44,8 +45,8 @@ class _AddEventPageState extends State<AddEventPage> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<Database>(context);
-    _textTaskController.clear();
-    _textDescriptionController.clear();
+    //_textTaskController.clear();
+    //_textDescriptionController.clear();
     return Padding(
       padding: const EdgeInsets.all(24.0),
       child: Column(
@@ -53,37 +54,49 @@ class _AddEventPageState extends State<AddEventPage> {
         children: <Widget>[
           Center(
             child: Text(
-              "Add new event",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              "Thêm sự kiện",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20,color: Theme.of(context).accentColor),
             ),
           ),
           SizedBox(
-            height: 24,
+            height: 10,
+          ),
+          Divider(height: 1,indent: 1,),
+          SizedBox(
+            height: 10,
           ),
           CustomDateTimePicker(
               icon: Icons.date_range,
               onPressed: _pickerDate,
-              value: _selectedDate.toString()),
+              value: DateFormat("dd-MM-yyyy").format(_selectedDate) ),
           CustomDateTimePicker(
               icon: Icons.access_time,
               onPressed: _pickerTime,
               value: _selectedTime.toString()),
+         SizedBox(
+            height: 10,
+          ),
+          Divider(height: 1,indent: 1,),
           SizedBox(
-            height: 24,
+            height: 10,
           ),
           CustomTextField(
-            labelText: 'Enter event name',
+            labelText: 'sự kiện',
             controller: _textTaskController,
           ),
           SizedBox(
             height: 24,
           ),
           CustomTextField(
-            labelText: 'Enter description',
+            labelText: 'mô tả',
             controller: _textDescriptionController,
           ),
           SizedBox(
-            height: 24,
+            height: 10,
+          ),
+          Divider(height: 1,indent: 1,),
+          SizedBox(
+            height: 10,
           ),
           
           CustomModelAction(

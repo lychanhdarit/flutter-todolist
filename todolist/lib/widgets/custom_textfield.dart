@@ -10,9 +10,11 @@ class CustomTextField extends StatelessWidget {
     return TextField(
       controller: controller,
             decoration: InputDecoration(
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                labelText: labelText),
-          );
+                border: InputBorder.none, 
+                hintText: labelText, 
+                prefixIcon: const Icon(Icons.edit, color: Colors.red,),
+                    prefixText: ' ', 
+          )
+    );
   }
 }
